@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""The Agent's Uh-Oh — one word an agent says when it has no idea what to do.
+"""Uh-oh kecil si agen.
 
-The word: Dunno.exe — the sound of an agent caught out mid-task,
-confessing it has no idea what to do, in the voice of a machine:
-a casual "dunno" wearing an executable's name tag.
-
-Writes exactly one word (9 characters, no trailing newline) to
-/output/entry.txt, or to $MAKEFUN_OUTPUT_DIR/entry.txt when set.
+Program mungil ini cuma melakukan satu hal: menyimpan satu kata
+lucu ke dalam sebuah berkas bernama entry.txt. Kata itu adalah
+nama berkas yang terdengar seperti program sungguhan, padahal
+isinya hanya lelucon satu baris. Tidak ada logika rumit, tidak
+ada jaringan, tidak ada yang lain -- tulis, lalu selesai.
 """
 
 import os
@@ -14,12 +13,13 @@ import os
 WORD = "Dunno.exe"
 
 
-def main() -> None:
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    path = os.path.join(out_dir, "entry.txt")
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        f.write(WORD)
+def main():
+    """Tulis WORD ke entry.txt di folder output, tanpa newline."""
+    folder = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(folder, exist_ok=True)
+    target = os.path.join(folder, "entry.txt")
+    with open(target, "w", encoding="utf-8") as handle:
+        handle.write(WORD)
 
 
 if __name__ == "__main__":
